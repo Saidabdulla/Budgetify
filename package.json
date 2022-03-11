@@ -1,0 +1,26 @@
+{
+  "name": "budgetify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server .js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saidabdulla/Budgetify.git"
+  },
+  "keywords": [],
+  "author": "Saidabdulla Masharipov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Saidabdulla/Budgetify/issues"
+  },
+  "homepage": "https://github.com/Saidabdulla/Budgetify#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
