@@ -36,13 +36,13 @@ router.put("/:id", (req, res) => {
 
     accounts[req.params.id] = account;
 
-    res.status(201).json(accounts);
+    res.status(200).json(accounts);
 });
 
 router.delete("/:id", (req, res) => {
     accounts.splice(req.params.id, 1);
 
-    res.status(201).json(accounts);
+    res.status(200).json(accounts);
 });
 
 module.exports = router;
