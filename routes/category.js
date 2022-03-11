@@ -1,48 +1,22 @@
 const express = require("express");
 const router = express.Router();
 
-const categories = [
-    {
-        name: "Entertainment",
-    },
-    {
-        name: "Car",
-    },
-    {
-        name: "Job",
-    },
-];
+const {
+    getCategories,
+    getCategoryById,
+    addCategory,
+    updateCategory,
+    deleteCategory,
+} = require("../controllers/categoryController");
 
-router.get("/", (req, res) => {
-    res.status(200).json(categories);
-});
+router.get("/", getCategories);
 
-router.get("/:id", (req, res) => {
-    res.status(200).json(categories[req.params.id]);
-});
+router.get("/:id", getCategoryById);
 
-router.post("/", (req, res) => {
-    const category = {
-        name: req.body.name,
-    };
+router.post("/", addCategory);
 
-    categories.push(category);
+router.put("/:id", updateCategory);
 
-    res.status(201).json(categories);
-});
-
-router.put("/:id", (req, res) => {
-    const category = { ...req.body };
-
-    categories[req.params.id] = category;
-
-    res.status(201).json(categories);
-});
-
-router.delete("/:id", (req, res) => {
-    categories.splice(req.params.id, 1);
-
-    res.status(201).json(categories);
-});
+router.delete("/:id", deleteCategory);
 
 module.exports = router;
