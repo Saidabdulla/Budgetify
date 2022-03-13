@@ -22,7 +22,7 @@ const register = (req, res) => {
 };
 
 const opts = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken,
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.JWT_SECRET,
 };
 
