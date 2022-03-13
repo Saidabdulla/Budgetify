@@ -7,7 +7,7 @@ const categoryRoutes = require("./routes/category");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
- 
+
 app.use("/account", accountRoutes);
 app.use("/transaction", transactionRoutes);
 app.use("/category", categoryRoutes);
