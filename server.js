@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 
@@ -14,5 +16,6 @@ app.use("/transaction", transactionRoutes);
 app.use("/category", categoryRoutes);
 app.use("/auth", authRoutes);
 
-const PORT = 3000;
+const PORT = process.env.PORT;
+
 app.listen(PORT, () => console.log(`Server working on ${PORT} - port.`));

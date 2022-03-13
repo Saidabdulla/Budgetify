@@ -1,5 +1,6 @@
 const users = require("../DB/FakeUsers");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 exports.register = (req, res) => {
     const user = {
@@ -21,6 +22,20 @@ exports.login = (req, res) => {
     const user = users.find((el) => el.email === req.body.email);
 
     if (user && bcrypt.compareSync(req.body.password, user.password)) {
-        res.status(200).json(user);
+        const payload = {
+            email: user.email,
+            password: user.password,
+            role: user.role,
+        };
+
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {
+            expiresIn: "1h",
+        });
+
+        res.status(200).json({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            token,
+        });
     } else res.status(401).json("Wrong password or email!");
 };
