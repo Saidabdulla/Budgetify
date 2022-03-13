@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const auth = require("../controllers/authController").auth;
+
 const {
     getAccounts,
     getAccountById,
@@ -9,14 +11,14 @@ const {
     deleteAccount,
 } = require("../controllers/accountController");
 
-router.get("/", getAccounts);
+router.get("/", auth, getAccounts);
 
-router.get("/:id", getAccountById);
+router.get("/:id", auth, getAccountById);
 
-router.post("/", addAccount);
+router.post("/", auth, addAccount);
 
-router.put("/:id", updateAccount);
+router.put("/:id", auth, updateAccount);
 
-router.delete("/:id", deleteAccount);
+router.delete("/:id", auth, deleteAccount);
 
 module.exports = router;
