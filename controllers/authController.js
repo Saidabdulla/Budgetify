@@ -14,7 +14,13 @@ exports.register = (req, res) => {
 
     users.push(user);
 
-    res.json(users);
+    res.status(200).json(users);
 };
 
-exports.login = (req, res) => {};
+exports.login = (req, res) => {
+    const user = users.find((el) => el.email === req.body.email);
+
+    if (user && bcrypt.compareSync(req.body.password, user.password)) {
+        res.status(200).json(user);
+    } else res.status(401).json("Wrong password or email!");
+};
