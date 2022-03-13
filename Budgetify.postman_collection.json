@@ -11,6 +11,16 @@
 				{
 					"name": "Account - Get all accounts",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpbXBsZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCR0VzV5M3ZtVEV0VGpaRkg2LlBEWE11RFdUMWY2S2pPVzR3VXZSS1RGL3FhNnNWNG5EdUd0QyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjQ3MTkwNjI5LCJleHAiOjE2NDcxOTQyMjl9.EbAGH437WDGIjSprp9dVTPcvBLKZevOtLilmJCFkIhI",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -133,6 +143,16 @@
 				{
 					"name": "Transaction - Get all transactions",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpbXBsZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCR0VzV5M3ZtVEV0VGpaRkg2LlBEWE11RFdUMWY2S2pPVzR3VXZSS1RGL3FhNnNWNG5EdUd0QyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjQ3MTkyMDIyLCJleHAiOjE2NDcxOTU2MjJ9.04mJiKIOFqvR2E_X2RorA7uOft6-bA6YYnwVWYyfrg8",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -232,7 +252,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/transaction/1",
+							"raw": "http://localhost:3000/transaction/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -240,7 +260,7 @@
 							"port": "3000",
 							"path": [
 								"transaction",
-								"1"
+								"0"
 							]
 						}
 					},
@@ -296,7 +316,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/category/1",
+							"raw": "http://localhost:3000/category/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -304,7 +324,7 @@
 							"port": "3000",
 							"path": [
 								"category",
-								"1"
+								"0"
 							]
 						}
 					},
@@ -353,7 +373,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/category/0",
+							"raw": "http://localhost:3000/category/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -361,7 +381,7 @@
 							"port": "3000",
 							"path": [
 								"category",
-								"0"
+								"1"
 							]
 						}
 					},
@@ -406,6 +426,69 @@
 							""
 						]
 					}
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User - Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"email\": \"simple\",\r\n        \"firstName\": \"simple\",\r\n        \"lastName\": \"simple\",\r\n        \"phone\": \"+999999999\",\r\n        \"password\": \"simple\",\r\n        \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User - Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"email\": \"simple@gmail.com\",\r\n        \"password\": \"strong_password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
