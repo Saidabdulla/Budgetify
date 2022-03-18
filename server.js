@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./core/connectDB")();
 
 const passport = require("passport");
 const cors = require("cors");
