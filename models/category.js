@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const User = require("./user");
 
-const accountSchema = new Schema(
+const categorySchema = new Schema(
     {
         name: {
             type: String,
@@ -15,6 +15,10 @@ const accountSchema = new Schema(
             required: true,
             trim: true,
         },
+        isIncome: {
+            type: Boolean,
+            required: true,
+        },
         user_id: {
             type: Schema.Types.ObjectId,
             ref: User,
@@ -25,4 +29,4 @@ const accountSchema = new Schema(
     { timestamps: true }
 );
 
-module.exports = mongoose.model("account", accountSchema);
+module.exports = mongoose.model("categories", categorySchema);
