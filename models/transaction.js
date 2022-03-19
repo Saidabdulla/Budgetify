@@ -5,7 +5,7 @@ const User = require("./user");
 const Account = require("./account");
 const Category = require("./category");
 
-const categorySchema = new Schema(
+const transactionSchema = new Schema(
     {
         amount: {
             type: Number,
@@ -47,4 +47,4 @@ const categorySchema = new Schema(
     { timestamps: true }
 );
 
-module.exports = mongoose.model("categories", categorySchema);
+module.exports = mongoose.model("transaction", transactionSchema);
