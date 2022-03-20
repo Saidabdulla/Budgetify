@@ -1,52 +1,56 @@
-const transactions = [
-    {
-        category_id: 1,
-        isIncome: true,
-        amount: 5000000,
-        description: "Got salary",
-        date: "11/02/2021",
-    },
-    {
-        category_id: 2,
-        isIncome: false,
-        amount: 250000,
-        description: "For car service",
-        date: "11/03/2021",
-    },
-];
+const Transaction = require("../models/transaction");
 
-exports.getTransactions = (req, res) => {
+exports.getTransactions = async (req, res) => {
+    const transactions = await Transaction.find({
+        $and: [
+            {
+                user_id: req.user._id,
+            },
+            { account_id: req.params.acc_id },
+        ],
+    }).populate("category_id account_id");
+
     res.status(200).json(transactions);
 };
 
-exports.getTransactionById = (req, res) => {
-    res.status(200).json(transactions[req.params.id]);
+exports.getTransactionById = async (req, res) => {
+    const transaction = await Transaction.findById(req.params.id);
+
+    res.status(200).json(transaction);
 };
 
-exports.addTransaction = (req, res) => {
+exports.addTransaction = async (req, res) => {
     const transaction = {
-        category_id: req.body.category_id,
-        isIncome: req.body.isIncome,
         amount: req.body.amount,
+        isIncome: req.body.isIncome,
         description: req.body.description,
-        date: new Date(),
+        note: req.body.note,
+        user_id: req.user._id,
+        account_id: req.body.account_id,
+        category_id: req.body.category_id,
     };
 
-    transactions.push(transaction);
+    const saved = await Transaction.create(transaction);
 
-    res.status(201).json(transactions);
+    res.status(201).json(saved);
 };
 
-exports.updateTransaction = (req, res) => {
+exports.updateTransaction = async (req, res) => {
     const transaction = { ...req.body };
 
-    transactions[req.params.id] = transaction;
+    const updated = await Transaction.findByIdAndUpdate(
+        req.params.id,
+        {
+            $set: transaction,
+        },
+        { new: true }
+    );
 
-    res.status(201).json(transactions);
+    res.status(200).json(updated);
 };
 
-exports.deleteTransaction = (req, res) => {
-    transactions.splice(req.params.id, 1);
+exports.deleteTransaction = async (req, res) => {
+    await Transaction.findByIdAndDelete(req.params.id);
 
-    res.status(201).json(transactions);
+    res.status(200).json("Deleted successfully!");
 };
