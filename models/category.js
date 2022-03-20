@@ -10,11 +10,6 @@ const categorySchema = new Schema(
             required: true,
             trim: true,
         },
-        currency: {
-            type: String,
-            required: true,
-            trim: true,
-        },
         isIncome: {
             type: Boolean,
             required: true,
