@@ -1,7 +1,9 @@
 require("dotenv").config();
+require("./core/connectDB")();
 
 const passport = require("passport");
 const cors = require("cors");
+const morgan = require("morgan");
 const express = require("express");
 const app = express();
 
@@ -13,6 +15,7 @@ const authRoutes = require("./routes/auth");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(morgan("dev"));
 app.use(passport.initialize());
 
 app.use("/account", accountRoutes);

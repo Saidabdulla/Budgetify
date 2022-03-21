@@ -1,43 +1,78 @@
-const accounts = [
-    { name: "First", currency: "USD", balance: 1000 },
-    {
-        name: "Second",
-        currency: "UZS",
-        balance: 120000,
-    },
-    { name: "Third", currency: "EURO", balance: 600 },
-];
+const Account = require("../models/account");
 
-exports.getAccounts = (req, res) => {
+exports.getAccounts = async (req, res) => {
+    const accounts = await Account.find({ user_id: req.user._id });
+
     res.status(200).json(accounts);
 };
 
-exports.getAccountById = (req, res) => {
-    res.status(200).json(accounts[req.params.id]);
+exports.getAccountById = async (req, res) => {
+    const account = await Account.findById(req.params.id);
+
+    res.status(200).json(account);
 };
 
-exports.addAccount = (req, res) => {
+exports.addAccount = async (req, res) => {
+    const checkAcc = await Account.findOne({
+        $and: [
+            { name: req.body.name.toLowerCase() },
+            {
+                currency: req.body.currency.toLowerCase(),
+            },
+        ],
+    });
+
+    if (checkAcc) {
+        return res.json("Account exist!");
+    }
+
     const account = {
-        name: req.body.name,
-        currency: req.body.currency,
-        balance: req.body.balance,
+        name: req.body.name.toLowerCase(),
+        currency: req.body.currency.toLowerCase(),
+        user_id: req.user._id,
     };
 
-    accounts.push(account);
+    const saved = await Account.create(account);
 
-    res.status(201).json(accounts);
+    res.status(201).json(saved);
 };
 
-exports.updateAccount = (req, res) => {
-    const account = { ...req.body };
+exports.updateAccount = async (req, res) => {
+    const checkAcc = await Account.findOne({
+        $and: [
+            { name: req.body.name.toLowerCase() },
+            {
+                currency: req.body.currency.toLowerCase(),
+            },
+            {
+                _id: { $ne: req.params.id },
+            },
+        ],
+    });
 
-    accounts[req.params.id] = account;
+    if (checkAcc) {
+        return res.json("Account exist!");
+    }
 
-    res.status(200).json(accounts);
+    const account = {
+        name: req.body.name.toLowerCase(),
+        currency: req.body.currency.toLowerCase(),
+        user_id: req.user._id,
+    };
+
+    const updated = await Account.findByIdAndUpdate(
+        req.params.id,
+        {
+            $set: account,
+        },
+        { new: true }
+    );
+
+    res.status(200).json(updated);
 };
 
-exports.deleteAccount = (req, res) => {
-    accounts.splice(req.params.id, 1);
+exports.deleteAccount = async (req, res) => {
+    await Account.findByIdAndDelete(req.params.id);
 
-    res.status(200).json(accounts);
+    res.status(200).json("Deleted successfully!");
 };

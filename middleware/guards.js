@@ -1,7 +1,7 @@
-const users = require("../DB/FakeUsers");
+const User = require("../models/user");
 
-const userGuard = (req, res, next) => {
-    const user = users.find((el) => el.email === req.user.email);
+const userGuard = async (req, res, next) => {
+    const user = await User.findOne({ email: req.user.email.toLowerCase() });
 
     if (user && user.role === "user") {
         next();

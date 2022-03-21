@@ -12,9 +12,9 @@ const {
     deleteTransaction,
 } = require("../controllers/transactionController");
 
-router.get("/", auth, userGuard, getTransactions);
+router.get("/account/:acc_id", auth, userGuard, getTransactions);
 
-router.get("/:id", auth, userGuard, getTransactionById);
+router.get("/id/:id", auth, userGuard, getTransactionById);
 
 router.post("/", auth, userGuard, addTransaction);
 
