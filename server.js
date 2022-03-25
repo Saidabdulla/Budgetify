@@ -26,3 +26,5 @@ app.use("/auth", authRoutes);
 const PORT = process.env.PORT;
 
 app.listen(PORT, () => console.log(`Server working on ${PORT} - port.`));
+
+module.exports = app;
