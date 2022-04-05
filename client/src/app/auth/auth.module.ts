@@ -1,17 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { AuthComponent } from './auth.component';
+import { AuthFormComponent } from './auth-form/auth-form.component';
+import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+    {
+        path: 'login',
+        component: AuthFormComponent,
+    },
+];
 
 @NgModule({
-    declarations: [AuthComponent],
+    declarations: [AuthFormComponent],
     imports: [
         CommonModule,
-        MatButtonModule,
-        MatInputModule,
-        MatFormFieldModule,
+        SharedModule,
+        ReactiveFormsModule,
+        RouterModule.forChild(routes),
     ],
+    exports: [AuthFormComponent],
 })
 export class AuthModule {}
