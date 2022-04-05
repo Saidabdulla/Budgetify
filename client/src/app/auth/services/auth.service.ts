@@ -25,14 +25,22 @@ export class AuthService {
             );
     }
 
+    isLoggedIn() {
+        const expiresIn = localStorage.getItem('expiresIn');
+        if (expiresIn) {
+            return Date.now() < Number(expiresIn);
+        }
+        return false;
+    }
+
     logout() {
         localStorage.removeItem('expiresIn');
-        localStorage.removeItem('idToken');
+        localStorage.removeItem('Token');
     }
 
     private setSession(res: any) {
         const expiresIn = Date.now() + Number(res.expiresIn);
-        localStorage.setItem('idToken', res.apiKey);
+        localStorage.setItem('Token', res.token);
         localStorage.setItem('expiresIn', String(expiresIn));
     }
 
