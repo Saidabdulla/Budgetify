@@ -56,7 +56,7 @@ const login = async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         expiresIn: process.env.JWT_EXPIRES_IN,
-        token,
+        token: `Bearer ${token}`,
     });
 };
 
