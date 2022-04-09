@@ -1,6 +1,6 @@
 <header class="header">
     <div class="header__logo">
-        <a routerLink="/" *ngIf="isLoggedIn"> Budgetify </a>
+        <a routerLink="/"> Budgetify </a>
     </div>
     <ul class="header__navbar" *ngIf="isLoggedIn">
         <li>
@@ -54,7 +54,9 @@
             </div>
         </button>
         <mat-menu #menu="matMenu">
-            <button (click)="onClick()" mat-menu-item>Logout</button>
+            <button (click)="onClick()" mat-menu-item>
+                <mat-icon style="margin-right: 5px">exit_to_app</mat-icon>Logout
+            </button>
         </mat-menu>
     </div>
 </header>
