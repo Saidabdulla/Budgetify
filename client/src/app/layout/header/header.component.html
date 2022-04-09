@@ -1,0 +1,9 @@
+<header class="header">
+    <button routerLink="/" *ngIf="isLoggedIn">Budgetify</button>
+
+    <button routerLink="/category">category</button>
+
+    <div *ngIf="isLoggedIn" class="header__logout">
+        <a href="#" (click)="onClick()">Logout</a>
+    </div>
+</header>
