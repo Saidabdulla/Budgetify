@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthFormComponent {
     errorMessage = '';
+    hide = true;
 
     loginForm: FormGroup = new FormGroup({
         email: new FormControl('', [Validators.required]),
