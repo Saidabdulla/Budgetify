@@ -7,6 +7,8 @@ import { StatisticComponent } from './statistic/statistic.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthFormComponent } from './auth/auth-form/auth-form.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
+import { ObligatoryComponent } from './obligatory/obligatory.component';
 
 const routes: Routes = [
     {
@@ -17,6 +19,16 @@ const routes: Routes = [
     {
         path: 'category',
         component: CategoryComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'subscription',
+        component: SubscriptionComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'obligatory',
+        component: ObligatoryComponent,
         canActivate: [AuthGuard],
     },
     {

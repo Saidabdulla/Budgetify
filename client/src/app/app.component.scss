@@ -1,17 +1,7 @@
-.sidenav {
-    height: 100%;
-    &__aside {
-      min-width: 20rem;
-    }
-  
-    &__content {
-      display: flex;
-      flex-direction: column;
-    }
-  
-    &__footer {
-      margin-top: auto;
-    }
-  }
-  
-  
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Space Grotesk', sans-serif;
+}

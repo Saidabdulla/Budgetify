@@ -6,25 +6,31 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
     declarations: [],
     imports: [
+        RouterModule,
         CommonModule,
         BrowserAnimationsModule,
         MatButtonModule,
         MatInputModule,
         MatFormFieldModule,
         MatSidenavModule,
-        MatIconModule
+        MatIconModule,
+        MatMenuModule,
     ],
     exports: [
+        RouterModule,
         BrowserAnimationsModule,
         MatButtonModule,
         MatInputModule,
         MatFormFieldModule,
         MatSidenavModule,
-        MatIconModule
+        MatIconModule,
+        MatMenuModule,
     ],
 })
 export class SharedModule {}

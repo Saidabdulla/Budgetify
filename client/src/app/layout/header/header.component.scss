@@ -1,25 +1,57 @@
-@use "src/variables" as var;
+@use "src/variables"as var;
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+
 
 .header {
   background: var.$app-background;
-  display: flex;
-  padding: 1rem;
   color: var.$app-black;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 50px;
 
   &__logo {
-    font-size: 2rem;
-    text-align: center;
-    align-self: center;
-    width: 100%;
+    font-size: 20px;
+    font-family: 'Alata', sans-serif;
+
+    a {
+      text-decoration: none;
+      color: var.$app-black;
+    }
   }
 
-  &__logout {
-    align-self: center;
-    a {
-      color: var.$app-black;
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
+  &__navbar {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin-right: 20px;
+
+      a {
+        color: var.$app-black;
+        text-decoration: none;
+        padding: 0px 5px 4px 5px;
+      }
+
+      .active-link {
+        border-bottom: 1px solid var.$app-black;
+      }
+    }
+  }
+
+  &__menu {
+    &__user {
+      display: flex !important;
+      align-items: center;
+
+      img {
+        width: 22px;
+        height: 22px;
+        margin-right: 7px;
       }
     }
   }
