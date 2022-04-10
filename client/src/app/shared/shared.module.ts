@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
     declarations: [],
@@ -21,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
         MatSidenavModule,
         MatIconModule,
         MatMenuModule,
+        MatProgressBarModule,
     ],
     exports: [
         RouterModule,
@@ -31,6 +33,7 @@ import { MatMenuModule } from '@angular/material/menu';
         MatSidenavModule,
         MatIconModule,
         MatMenuModule,
+        MatProgressBarModule,
     ],
 })
 export class SharedModule {}
