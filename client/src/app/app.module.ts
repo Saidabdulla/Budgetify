@@ -10,9 +10,22 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { LayoutModule } from './layout/layout.module';
 import { ObligatoryComponent } from './obligatory/obligatory.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
+import { MainComponent } from './main/main.component';
+import { CategoryComponent } from './category/category.component';
+import { StatisticComponent } from './statistic/statistic.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
-    declarations: [AppComponent, NotFoundComponent, ObligatoryComponent, SubscriptionComponent],
+    declarations: [
+        AppComponent,
+        NotFoundComponent,
+        ObligatoryComponent,
+        SubscriptionComponent,
+        MainComponent,
+        CategoryComponent,
+        StatisticComponent,
+        AdminComponent,
+    ],
     imports: [
         AppRoutingModule,
         BrowserModule,
