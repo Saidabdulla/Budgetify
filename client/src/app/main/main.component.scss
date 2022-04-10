@@ -211,6 +211,58 @@
     }
 
     &__filters {
-        width: 235px;
+        margin-left: 40px;
+
+        &__top {
+            display: flex;
+            flex-direction: column;
+
+            button {
+                cursor: pointer;
+                width: 235px;
+                height: 50px;
+                background: none;
+                background-color: #fff;
+                border: none;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                font-size: 20px;
+                margin-bottom: 15px;
+
+                mat-icon {
+                    color: white;
+                    border-radius: 50%;
+                    width: 35px;
+                    height: 35px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-right: 7px;
+                    margin-left: 11px;
+                }
+
+                .income_bg {
+                    background-color: var.$income-bg;
+                }
+
+                .expense_bg {
+                    background-color: var.$expense-bg;
+                }
+
+                .transaction_bg {
+                    background-color: #fff;
+                    color: #86C9CF;
+                }
+
+            }
+
+            &__transaction,
+            &__account {
+                background-color: #86C9CF !important;
+
+            }
+        }
     }
 }
