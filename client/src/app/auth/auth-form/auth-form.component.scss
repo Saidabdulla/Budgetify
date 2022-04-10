@@ -1,0 +1,33 @@
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10rem;
+  
+    &__row {
+      width: 30rem;
+    }
+  
+    &__form {
+      display: contents;
+    }
+
+    button {
+      width: 30rem;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+  }
+
+  .error-message {
+    border: 1px solid  #F5C2C7;
+    background-color: #F8D7DA;
+    width: 28.4rem;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 12px;
+    text-align: center;
+    color: #842029;
+  }

@@ -55,6 +55,7 @@ const login = async (req, res) => {
     res.status(200).json({
         firstName: user.firstName,
         lastName: user.lastName,
+        expiresIn: process.env.JWT_EXPIRES_IN,
         token: `Bearer ${token}`,
     });
 };
