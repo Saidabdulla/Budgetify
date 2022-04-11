@@ -84,7 +84,13 @@
         }
     }
 
-
+    app-filter {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        max-height: calc(100vh - 129px);
+        padding: 0;
+    }
 }
 
 @media(max-width: 1439px) {
