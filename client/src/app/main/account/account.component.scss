@@ -1,0 +1,57 @@
+@use "src/variables"as var;
+
+.main__accounts {
+    margin-top: -10px;
+
+
+    &__card {
+        cursor: pointer;
+        width: 430px;
+        height: 200px;
+        background-image: url('../../../assets/img/card_bg.png') !important;
+        background-size: cover;
+        border-radius: 10px;
+        position: relative;
+
+        &__title {
+            font-size: 32px;
+            padding-top: 38px;
+            padding-left: 40px;
+            color: var.$app-white;
+        }
+
+        &__balance {
+            font-size: 53px;
+            margin-top: 45px;
+            margin-left: 40px;
+            color: var.$app-white;
+        }
+
+        &__currency {
+            font-size: 64px;
+            height: 90px;
+            width: 90px;
+            background-color: var.$app-white;
+            color: #D376D7;
+            position: absolute;
+            top: 25px;
+            right: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+
+        }
+    }
+
+    .white-layout {
+        position: absolute;
+        left: 13px;
+        top: 9px;
+        width: 395px;
+        height: 170px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, .75);
+        z-index: 99;
+    }
+}

@@ -1,0 +1,10 @@
+<div class="main__accounts" *ngFor="let item of fakeAccounts">
+    <div class="main__accounts__card">
+        <div class="white-layout" *ngIf="!item.isActive"></div>
+        <div class="main__accounts__card__title">
+            {{ item.name }}
+        </div>
+        <div class="main__accounts__card__balance">{{ item.balance }}</div>
+        <div class="main__accounts__card__currency">{{ item.sign }}</div>
+    </div>
+</div>
