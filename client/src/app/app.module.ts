@@ -16,6 +16,7 @@ import { StatisticComponent } from './statistic/statistic.component';
 import { AdminComponent } from './admin/admin.component';
 import { AccountComponent } from './main/account/account.component';
 import { TransactionComponent } from './main/transaction/transaction.component';
+import { FilterComponent } from './main/filter/filter.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { TransactionComponent } from './main/transaction/transaction.component';
         AdminComponent,
         AccountComponent,
         TransactionComponent,
+        FilterComponent,
     ],
     imports: [
         AppRoutingModule,

@@ -55,3 +55,35 @@
         z-index: 99;
     }
 }
+
+@media(max-width: 1439px) {
+
+    .main__accounts {
+        &__card {
+            width: 400px;
+            height: 190px;
+
+            &__title {
+                font-size: 30px;
+            }
+
+            &__balance {
+                font-size: 50px;
+            }
+
+            &__currency {
+                font-size: 56px;
+                height: 80px;
+                width: 80px;
+            }
+        }
+
+        .white-layout {
+            left: 12px;
+            top: 9px;
+            width: 368px;
+            height: 158px;
+
+        }
+    }
+}
