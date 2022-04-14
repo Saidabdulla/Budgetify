@@ -6,6 +6,9 @@ import { MainComponent } from './main/main.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './auth/auth.guard';
+import { AuthFormComponent } from './auth/auth-form/auth-form.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
+import { ObligatoryComponent } from './obligatory/obligatory.component';
 
 const routes: Routes = [
     {
@@ -19,6 +22,16 @@ const routes: Routes = [
         canActivate: [AuthGuard],
     },
     {
+        path: 'subscription',
+        component: SubscriptionComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'obligatory',
+        component: ObligatoryComponent,
+        canActivate: [AuthGuard],
+    },
+    {
         path: 'statistic',
         component: StatisticComponent,
         canActivate: [AuthGuard],
@@ -28,7 +41,15 @@ const routes: Routes = [
         component: AdminComponent,
         canActivate: [AuthGuard],
     },
-    { path: '', redirectTo: '/main', pathMatch: 'full' },
+    {
+        path: 'login',
+        component: AuthFormComponent,
+    },
+    {
+        path: '',
+        redirectTo: 'main',
+        pathMatch: 'full',
+    },
     { path: '**', component: NotFoundComponent },
 ];
 

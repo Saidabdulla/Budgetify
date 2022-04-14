@@ -1,40 +1,55 @@
-<div class="auth-form">
-    <h3>LOGIN</h3>
+<div class="auth-container">
+    <div class="auth-form">
+        <h3>Budgetify</h3>
 
-    <div class="error-message" *ngIf="errorMessage.length > 0">
-        {{ errorMessage }}
-    </div>
+        <div class="error-message" *ngIf="errorMessage.length > 0">
+            {{ errorMessage }}
+        </div>
 
-    <form
-        [formGroup]="loginForm"
-        (ngSubmit)="onSubmit()"
-        class="auth-form__form"
-    >
-        <mat-form-field class="auth-form__row" appearance="fill">
-            <mat-label>Email</mat-label>
-            <input
-                type="email"
-                matInput
-                placeholder="email@domain.com"
-                formControlName="email"
-            />
-        </mat-form-field>
-        <mat-form-field class="auth-form__row" appearance="fill">
-            <mat-label>Password</mat-label>
-            <input
-                type="password"
-                matInput
-                formControlName="password"
-                placeholder="Minumum 8 charachters"
-            />
-        </mat-form-field>
-        <button
-            type="submit"
-            color="primary"
-            [disabled]="loginForm.invalid"
-            mat-raised-button
+        <form
+            [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()"
+            class="auth-form__form"
         >
-            Login
-        </button>
-    </form>
+            <mat-form-field class="auth-form__row" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input
+                    type="text"
+                    matInput
+                    placeholder="email@domain.com"
+                    formControlName="email"
+                />
+            </mat-form-field>
+            <mat-form-field class="auth-form__row" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input
+                    formControlName="password"
+                    matInput
+                    [type]="hide ? 'password' : 'text'"
+                />
+                <button
+                    type="button"
+                    mat-icon-button
+                    matSuffix
+                    (click)="hide = !hide"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide"
+                >
+                    <mat-icon>{{
+                        hide ? 'visibility_off' : 'visibility'
+                    }}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <button
+                class="submit-button"
+                type="submit"
+                color="primary"
+                [disabled]="loginForm.invalid"
+                mat-raised-button
+            >
+                Login
+            </button>
+        </form>
+    </div>
 </div>

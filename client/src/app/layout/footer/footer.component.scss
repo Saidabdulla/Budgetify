@@ -1,0 +1,16 @@
+@use "src/variables"as var;
+
+.footer {
+    max-width: 1920px;
+    margin: 0 auto;
+    background-color: var.$app-background;
+    padding: 30px;
+    text-align: center;
+    color: var.$app-black;
+
+    a {
+        text-decoration: none;
+        color: #46d4e0;
+        
+    }
+}

@@ -7,15 +7,32 @@ import { AuthModule } from './auth/auth.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { LayoutModule } from './layout/layout.module';
+import { ObligatoryComponent } from './obligatory/obligatory.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
+import { MainComponent } from './main/main.component';
+import { CategoryComponent } from './category/category.component';
+import { StatisticComponent } from './statistic/statistic.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
-    declarations: [AppComponent, NotFoundComponent],
+    declarations: [
+        AppComponent,
+        NotFoundComponent,
+        ObligatoryComponent,
+        SubscriptionComponent,
+        MainComponent,
+        CategoryComponent,
+        StatisticComponent,
+        AdminComponent,
+    ],
     imports: [
+        AppRoutingModule,
         BrowserModule,
         SharedModule,
+        LayoutModule,
         AuthModule,
         HttpClientModule,
-        AppRoutingModule,
     ],
     providers: [
         {

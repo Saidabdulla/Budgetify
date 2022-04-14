@@ -1,0 +1,59 @@
+@use "src/variables"as var;
+
+
+.header {
+  background: var.$app-background;
+  color: var.$app-black;
+  display: flex;
+  justify-content: flex-end;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 50px;
+
+  &__logo {
+    font-size: 20px;
+    font-family: 'Alata', sans-serif;
+    margin-right: auto;
+
+    a {
+      text-decoration: none;
+      color: var.$app-black;
+    }
+  }
+
+  &__navbar {
+    display: flex;
+    list-style: none;
+    margin: 0 80px 0 0;
+    padding: 0;
+
+    li {
+      margin-right: 20px;
+
+      a {
+        color: var.$app-black;
+        text-decoration: none;
+        padding: 0px 5px 4px 5px;
+      }
+
+      .active-link {
+        border-bottom: 1px solid var.$app-black;
+      }
+    }
+  }
+
+  &__menu {
+    margin-top: -7px;
+
+    &__user {
+      display: flex !important;
+      align-items: center;
+
+      img {
+        width: 22px;
+        height: 22px;
+        margin-right: 7px;
+      }
+    }
+  }
+}

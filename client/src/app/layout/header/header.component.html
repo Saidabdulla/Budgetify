@@ -1,0 +1,62 @@
+<header class="header">
+    <div class="header__logo">
+        <a routerLink="/"> Budgetify </a>
+    </div>
+    <ul class="header__navbar" *ngIf="isLoggedIn">
+        <li>
+            <a
+                *ngIf="isLoggedIn"
+                routerLink="/category"
+                routerLinkActive="active-link"
+                >Categories</a
+            >
+        </li>
+        <li>
+            <a
+                *ngIf="isLoggedIn"
+                routerLink="/subscription"
+                routerLinkActive="active-link"
+                >Subscriptions</a
+            >
+        </li>
+        <li>
+            <a
+                *ngIf="isLoggedIn"
+                routerLink="/obligatory"
+                routerLinkActive="active-link"
+                >Obligatory</a
+            >
+        </li>
+        <li>
+            <a
+                *ngIf="isLoggedIn"
+                routerLink="/statistic"
+                routerLinkActive="active-link"
+                >Statistic</a
+            >
+        </li>
+        <li>
+            <!-- if user.role===admin then visible this button -->
+            <a
+                *ngIf="isLoggedIn"
+                routerLink="/admin"
+                routerLinkActive="active-link"
+                >Admin</a
+            >
+        </li>
+    </ul>
+
+    <div class="header__menu" *ngIf="isLoggedIn">
+        <button mat-button [matMenuTriggerFor]="menu">
+            <div class="header__menu__user">
+                <img src="../../../assets/img/user.png" alt="User image" />
+                <div>Saidabdulla Masharipov</div>
+            </div>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button (click)="onClick()" mat-menu-item>
+                <mat-icon style="margin-right: 5px">exit_to_app</mat-icon>Logout
+            </button>
+        </mat-menu>
+    </div>
+</header>
