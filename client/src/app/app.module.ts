@@ -14,6 +14,9 @@ import { MainComponent } from './main/main.component';
 import { CategoryComponent } from './category/category.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { AdminComponent } from './admin/admin.component';
+import { AccountComponent } from './main/account/account.component';
+import { TransactionComponent } from './main/transaction/transaction.component';
+import { FilterComponent } from './main/filter/filter.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +28,9 @@ import { AdminComponent } from './admin/admin.component';
         CategoryComponent,
         StatisticComponent,
         AdminComponent,
+        AccountComponent,
+        TransactionComponent,
+        FilterComponent,
     ],
     imports: [
         AppRoutingModule,
