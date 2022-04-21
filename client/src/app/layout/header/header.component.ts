@@ -11,6 +11,8 @@ export class HeaderComponent {
     @Output() loggedOutClicked: EventEmitter<void> = new EventEmitter<void>();
     constructor() {}
 
+    loggedUser = localStorage.getItem('user');
+
     onClick(): void {
         this.loggedOutClicked.emit();
     }

@@ -40,6 +40,7 @@ export class AuthService {
 
     private setSession(res: any) {
         const expiresIn = Date.now() + Number(res.expiresIn);
+        localStorage.setItem('user', res.firstName + ' ' + res.lastName);
         localStorage.setItem('Token', res.token);
         localStorage.setItem('expiresIn', String(expiresIn));
     }
