@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const express = require("express");
 const app = express();
 
+const mainRoutes = require("./routes/main");
 const accountRoutes = require("./routes/account");
 const transactionRoutes = require("./routes/transaction");
 const categoryRoutes = require("./routes/category");
@@ -18,6 +19,7 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(passport.initialize());
 
+app.use("/main", mainRoutes);
 app.use("/account", accountRoutes);
 app.use("/transaction", transactionRoutes);
 app.use("/category", categoryRoutes);
