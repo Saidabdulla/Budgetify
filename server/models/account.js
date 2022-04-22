@@ -15,6 +15,16 @@ const accountSchema = new Schema(
             required: true,
             trim: true,
         },
+        sign: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        balance: {
+            type: Number,
+            required: true,
+            min: 0,
+        },
         user_id: {
             type: Schema.Types.ObjectId,
             ref: User,
