@@ -6,6 +6,6 @@ const { userGuard } = require("../middleware/guards");
 
 const { main } = require("../controllers/mainController");
 
-router.get("/:id", auth, userGuard, main);
+router.get("/", auth, userGuard, main);
 
 module.exports = router;

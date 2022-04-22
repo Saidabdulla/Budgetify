@@ -5,16 +5,7 @@ exports.main = async (req, res) => {
     try {
         const accounts = await Account.find({ user_id: req.user._id });
 
-        const transactions = await Transaction.find({
-            $and: [
-                { user_id: req.user._id },
-                {
-                    account_id: req.params.id,
-                },
-            ],
-        }).populate("category_id");
-
-        res.status(200).json({ data: { accounts, transactions } });
+        res.status(200).json(accounts);
     } catch (error) {
         res.status(500).json(error);
     }

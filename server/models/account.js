@@ -15,11 +15,6 @@ const accountSchema = new Schema(
             required: true,
             trim: true,
         },
-        sign: {
-            type: String,
-            required: true,
-            trim: true,
-        },
         balance: {
             type: Number,
             required: true,
