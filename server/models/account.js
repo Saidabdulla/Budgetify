@@ -2,15 +2,11 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const User = require("./user");
+const Currency = require("./currency");
 
 const accountSchema = new Schema(
     {
         name: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        currency: {
             type: String,
             required: true,
             trim: true,
@@ -22,6 +18,12 @@ const accountSchema = new Schema(
         },
         description: {
             type: String,
+            required: true,
+            trim: true,
+        },
+        currency_id: {
+            type: Schema.Types.ObjectId,
+            ref: Currency,
             required: true,
             trim: true,
         },
