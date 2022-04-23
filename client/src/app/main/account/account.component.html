@@ -13,6 +13,7 @@
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#accountModal"
+            (click)="onAccountClick(item)"
         >
             See details
         </button>
@@ -44,26 +45,29 @@
 
             <div class="modal__dialog__content__row">
                 <div class="__key">Title:</div>
-                <div class="__value">Debit Card</div>
+                <div class="__value">{{ clickedAccount?.name }}</div>
             </div>
 
             <div class="modal__dialog__content__row">
                 <div class="__key">Balance:</div>
-                <div class="__value">5,1232 $</div>
+                <div class="__value">
+                    {{ clickedAccount?.balance }}
+                    {{ clickedAccount?.currency_id?.symbol }}
+                </div>
             </div>
 
             <div class="modal__dialog__content__row">
                 <div class="__key">Currency:</div>
-                <div class="__value">USD ($)</div>
+                <div class="__value">
+                    {{ clickedAccount?.currency_id?.name }}
+                    ({{ clickedAccount?.currency_id?.symbol }})
+                </div>
             </div>
 
             <div class="modal__dialog__content__row">
                 <div class="__key">Description:</div>
                 <div class="__value">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut
-                    autem facere, quasi ad ea doloribus at molestias laborum
-                    enim commodi! Sed quos omnis aspernatur nisi atque, est
-                    rerum neque ducimus?
+                    {{ clickedAccount?.description }}
                 </div>
             </div>
 

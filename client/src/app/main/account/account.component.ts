@@ -7,8 +7,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
     @Input() accounts: any;
+    clickedAccount: any;
 
     constructor() {}
+
+    onAccountClick(item: object) {
+        console.log(item);
+        this.clickedAccount = item;
+    }
 
     ngOnInit(): void {}
 }
