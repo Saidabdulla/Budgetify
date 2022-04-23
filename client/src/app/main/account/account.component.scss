@@ -42,6 +42,19 @@
             border-radius: 50%;
 
         }
+
+        &__details {
+            position: absolute;
+            bottom: 35px;
+            right: 40px;
+            font-size: 14px;
+            text-decoration: none;
+            z-index: 99;
+            padding: 5px;
+            color: #ffffff;
+            border: none;
+            background: none;
+        }
     }
 
     .white-layout {
@@ -53,6 +66,24 @@
         border-radius: 10px;
         background-color: rgba(255, 255, 255, .75);
         z-index: 99;
+    }
+}
+
+.modal {
+    &__dialog {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        width: auto;
+        padding: 0;
+        margin: 0;
+
+        &__content {
+            border: none !important;
+            border-radius: 0 !important;
+            height: 100%;
+        }
     }
 }
 

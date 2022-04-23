@@ -1,10 +1,71 @@
-<div class="main__accounts" *ngFor="let item of fakeAccounts">
+<div class="main__accounts" *ngFor="let item of accounts">
     <div class="main__accounts__card">
-        <div class="white-layout" *ngIf="!item.isActive"></div>
+        <div class="white-layout" *ngIf="item.isActive"></div>
         <div class="main__accounts__card__title">
             {{ item.name }}
         </div>
         <div class="main__accounts__card__balance">{{ item.balance }}</div>
-        <div class="main__accounts__card__currency">{{ item.sign }}</div>
+        <div class="main__accounts__card__currency">
+            <span *ngIf="item.currency === 'usd'">$</span>
+        </div>
+        <button
+            class="main__accounts__card__details"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#accountModal"
+        >
+            See details
+        </button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div
+    class="modal fade"
+    id="accountModal"
+    tabindex="-1"
+    aria-labelledby="accountModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal__dialog">
+        <div class="modal-content modal__dialog__content">
+            <div class="modal__dialog__content__header">
+                <div class="__title">Account Information</div>
+                <div class="__edit"><mat-icon>edit</mat-icon></div>
+                <div class="__delete"><mat-icon>delete</mat-icon></div>
+                <button
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+
+            <div class="modal__dialog__content__row">
+                <div class="__key">Title</div>
+                <div class="__value">Debit Card</div>
+            </div>
+
+            <div class="modal__dialog__content__row">
+                <div class="__key">Balance</div>
+                <div class="__value">5,1232 $</div>
+            </div>
+
+            <div class="modal__dialog__content__row">
+                <div class="__key">Currency</div>
+                <div class="__value">USD ($)</div>
+            </div>
+
+            <div class="modal__dialog__content__row">
+                <div class="__key">Description</div>
+                <div class="__value">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut
+                    autem facere, quasi ad ea doloribus at molestias laborum
+                    enim commodi! Sed quos omnis aspernatur nisi atque, est
+                    rerum neque ducimus?
+                </div>
+            </div>
+        </div>
     </div>
 </div>

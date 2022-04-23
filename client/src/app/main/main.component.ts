@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-main',
@@ -6,22 +7,18 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-    fakeData = [
-        {
-            isActive: true,
-            name: 'Debit Card',
-            sign: '$',
-            balance: '5,125.5',
-        },
-        {
-            isActive: false,
-            name: 'Credit Card',
-            sign: '€',
-            balance: '1,125.5',
-        },
-    ];
+    userAccounts: any;
 
-    constructor() {}
+    constructor(private http: HttpClient) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.http.get('http://localhost:3000/main').subscribe(
+            (data) => {
+                this.userAccounts = data;
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+    }
 }

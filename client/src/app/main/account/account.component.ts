@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'app-account',
@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-    @Input() fakeAccounts: any;
+    @Input() accounts: any;
 
     constructor() {}
 
