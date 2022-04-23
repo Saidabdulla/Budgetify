@@ -2,7 +2,7 @@
     <div class="main__accounts__card">
         <div class="white-layout" *ngIf="item.isActive"></div>
         <div class="main__accounts__card__title">
-            {{ item.name }}
+            {{ item.name | titlecase }}
         </div>
         <div class="main__accounts__card__balance">{{ item.balance }}</div>
         <div class="main__accounts__card__currency">
@@ -20,7 +20,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Read Modal -->
 <div
     class="modal fade"
     id="accountModal"
@@ -32,8 +32,16 @@
         <div class="modal-content modal__dialog__content">
             <div class="modal__dialog__content__header">
                 <div class="__title">Account Information</div>
-                <button class="__edit"><mat-icon>edit</mat-icon></button>
                 <button
+                    data-bs-toggle="modal"
+                    data-bs-target="#updateModal"
+                    type="button"
+                    class="__edit"
+                >
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                    type="button"
                     (click)="deleteAccount(clickedAccount)"
                     class="__delete"
                 >
@@ -50,7 +58,9 @@
 
             <div class="modal__dialog__content__row">
                 <div class="__key">Title:</div>
-                <div class="__value">{{ clickedAccount?.name }}</div>
+                <div class="__value">
+                    {{ clickedAccount?.name | titlecase }}
+                </div>
             </div>
 
             <div class="modal__dialog__content__row">
@@ -87,6 +97,84 @@
                     Cancel
                 </button>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal__dialog">
+        <div class="modal-content modal__dialog__content">
+            <div class="modal__dialog__content__header">
+                <div class="__title">Edit Account</div>
+                <button
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+
+            <form
+                [formGroup]="updateAccountForm"
+                (ngSubmit)="updateAccount()"
+                class="auth-form__form"
+            >
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Title</mat-label>
+                    <input
+                        type="text"
+                        matInput
+                        placeholder="Debit card ..."
+                        formControlName="name"
+                    />
+                </mat-form-field>
+
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Currency</mat-label>
+                    <mat-select formControlName="currency">
+                        <mat-option>---</mat-option>
+                        <mat-option
+                            *ngFor="let currency of currencies"
+                            [value]="currency"
+                        >
+                            {{ currency.name }}
+                            ({{ currency.symbol }})
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <input
+                        type="text"
+                        matInput
+                        placeholder="Debit card ..."
+                        formControlName="description"
+                    />
+                </mat-form-field>
+
+                <div class="button-row">
+                    <button
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        mat-raised-button
+                        class="cancel-button"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        class="submit-button submit-button-active"
+                        type="submit"
+                        color="primary"
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

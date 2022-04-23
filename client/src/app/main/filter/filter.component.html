@@ -60,7 +60,7 @@
             </div>
 
             <form
-                [formGroup]="loginForm"
+                [formGroup]="addAccountForm"
                 (ngSubmit)="onSubmit()"
                 class="auth-form__form"
             >
@@ -123,8 +123,8 @@
                         class="submit-button"
                         type="submit"
                         color="primary"
-                        [disabled]="loginForm.invalid"
-                        ngClass="{ 'submit-button-active': !loginForm.invalid }"
+                        [disabled]="addAccountForm.invalid"
+                        ngClass="{ 'submit-button-active': !addAccountForm.invalid }"
                     >
                         Save
                     </button>

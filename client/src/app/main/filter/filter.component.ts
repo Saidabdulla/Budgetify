@@ -14,7 +14,7 @@ export class FilterComponent implements OnInit {
 
     constructor(private http: HttpClient, private router: Router) {}
 
-    loginForm: FormGroup = new FormGroup({
+    addAccountForm: FormGroup = new FormGroup({
         title: new FormControl('', [Validators.required]),
         description: new FormControl('', [Validators.required]),
         currency: new FormControl('', [Validators.required]),
@@ -24,10 +24,10 @@ export class FilterComponent implements OnInit {
     onSubmit() {
         this.http
             .post('http://localhost:3000/account', {
-                name: this.loginForm.value.title,
-                currency_id: this.loginForm.value.currency._id,
-                balance: this.loginForm.value.balance,
-                description: this.loginForm.value.description,
+                name: this.addAccountForm.value.title,
+                currency_id: this.addAccountForm.value.currency._id,
+                balance: this.addAccountForm.value.balance,
+                description: this.addAccountForm.value.description,
             })
             .subscribe(
                 (data) => {

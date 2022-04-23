@@ -108,6 +108,10 @@
                 }
             }
 
+            .form-row {
+                width: 100%;
+            }
+
             &__row {
                 display: flex;
                 border-bottom: 1px solid #333333;
@@ -139,6 +143,20 @@
                     padding: 15px 25px;
                     border-radius: 10px;
                     color: var.$login-button-border;
+                }
+
+                .submit-button {
+                    border: none;
+                    box-shadow: none;
+                    font-size: 20px;
+                    background-color: #B9E2E6;
+                    padding: 15px 25px;
+                    margin-left: 10px;
+                    border-radius: 10px;
+                }
+
+                .submit-button-active {
+                    color: black;
                 }
             }
 
