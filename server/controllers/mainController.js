@@ -3,7 +3,9 @@ const Transaction = require("../models/transaction");
 
 exports.main = async (req, res) => {
     try {
-        const accounts = await Account.find({ user_id: req.user._id });
+        const accounts = await Account.find({ user_id: req.user._id }).populate(
+            "currency_id"
+        );
 
         res.status(200).json(accounts);
     } catch (error) {

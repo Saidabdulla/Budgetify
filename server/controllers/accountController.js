@@ -30,13 +30,13 @@ exports.addAccount = async (req, res) => {
             $and: [
                 { name: req.body.name.toLowerCase() },
                 {
-                    currency: req.body.currency.toLowerCase(),
+                    currency_id: req.body.currency_id,
                 },
             ],
         });
 
         if (checkAcc) {
-            return res.json("Account exist!");
+            return res.status(400).json("Account exist!");
         }
 
         const account = {
@@ -55,24 +55,7 @@ exports.addAccount = async (req, res) => {
 
 exports.updateAccount = async (req, res) => {
     try {
-        const checkAcc = await Account.findOne({
-            $and: [
-                { name: req.body.name.toLowerCase() },
-                {
-                    currency: req.body.currency.toLowerCase(),
-                },
-                {
-                    _id: { $ne: req.params.id },
-                },
-            ],
-        });
-
-        if (checkAcc) {
-            return res.json("Account exist!");
-        }
-
         const account = {
-            name: req.body.name.toLowerCase(),
             user_id: req.user._id,
             ...req.body,
         };
