@@ -20,6 +20,11 @@ const accountSchema = new Schema(
             required: true,
             min: 0,
         },
+        description: {
+            type: String,
+            required: true,
+            trim: true,
+        },
         user_id: {
             type: Schema.Types.ObjectId,
             ref: User,
