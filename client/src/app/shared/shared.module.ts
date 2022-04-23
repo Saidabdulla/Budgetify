@@ -11,6 +11,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [],
@@ -28,6 +29,7 @@ import { MatSelectModule } from '@angular/material/select';
         FormsModule,
         ReactiveFormsModule,
         MatSelectModule,
+        MatDialogModule,
     ],
     exports: [
         RouterModule,
@@ -42,6 +44,7 @@ import { MatSelectModule } from '@angular/material/select';
         FormsModule,
         ReactiveFormsModule,
         MatSelectModule,
+        MatDialogModule,
     ],
 })
 export class SharedModule {}

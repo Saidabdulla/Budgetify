@@ -33,7 +33,12 @@
             <div class="modal__dialog__content__header">
                 <div class="__title">Account Information</div>
                 <button class="__edit"><mat-icon>edit</mat-icon></button>
-                <button class="__delete"><mat-icon>delete</mat-icon></button>
+                <button
+                    (click)="deleteAccount(clickedAccount)"
+                    class="__delete"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
                 <button
                     type="button"
                     data-bs-dismiss="modal"
