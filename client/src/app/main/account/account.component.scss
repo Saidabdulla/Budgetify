@@ -69,20 +69,79 @@
     }
 }
 
+
 .modal {
     &__dialog {
         position: absolute;
         right: 0;
         top: 0;
         height: 100vh;
-        width: auto;
+        width: 590px;
         padding: 0;
-        margin: 0;
+        margin: auto;
+        color: #333333;
 
         &__content {
             border: none !important;
             border-radius: 0 !important;
             height: 100%;
+            width: 100%;
+            padding: 40px 35px;
+            position: relative;
+
+            &__header {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 25px;
+
+
+                .__title {
+                    font-size: 32px;
+                    margin-right: 70px;
+                }
+
+                button {
+                    transform: scale(1.4);
+                    background: none;
+                    border: none;
+                    color: #333333;
+                }
+            }
+
+            &__row {
+                display: flex;
+                border-bottom: 1px solid #333333;
+                padding: 16px 0;
+
+                .__key {
+                    width: 170px;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+                .__value {
+                    width: calc(100% - 240px);
+                    font-size: 20px;
+                }
+            }
+
+
+            .button-row {
+                position: absolute;
+                bottom: 15px;
+                right: 40px;
+
+
+                .cancel-button {
+                    border: none;
+                    box-shadow: none;
+                    font-size: 20px;
+                    padding: 15px 25px;
+                    border-radius: 10px;
+                    color: var.$login-button-border;
+                }
+            }
+
         }
     }
 }

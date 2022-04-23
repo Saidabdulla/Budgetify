@@ -27,12 +27,12 @@
     aria-labelledby="accountModalLabel"
     aria-hidden="true"
 >
-    <div class="modal-dialog modal__dialog">
+    <div class="modal-dialog modal-lg modal__dialog">
         <div class="modal-content modal__dialog__content">
             <div class="modal__dialog__content__header">
                 <div class="__title">Account Information</div>
-                <div class="__edit"><mat-icon>edit</mat-icon></div>
-                <div class="__delete"><mat-icon>delete</mat-icon></div>
+                <button class="__edit"><mat-icon>edit</mat-icon></button>
+                <button class="__delete"><mat-icon>delete</mat-icon></button>
                 <button
                     type="button"
                     data-bs-dismiss="modal"
@@ -43,28 +43,40 @@
             </div>
 
             <div class="modal__dialog__content__row">
-                <div class="__key">Title</div>
+                <div class="__key">Title:</div>
                 <div class="__value">Debit Card</div>
             </div>
 
             <div class="modal__dialog__content__row">
-                <div class="__key">Balance</div>
+                <div class="__key">Balance:</div>
                 <div class="__value">5,1232 $</div>
             </div>
 
             <div class="modal__dialog__content__row">
-                <div class="__key">Currency</div>
+                <div class="__key">Currency:</div>
                 <div class="__value">USD ($)</div>
             </div>
 
             <div class="modal__dialog__content__row">
-                <div class="__key">Description</div>
+                <div class="__key">Description:</div>
                 <div class="__value">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut
                     autem facere, quasi ad ea doloribus at molestias laborum
                     enim commodi! Sed quos omnis aspernatur nisi atque, est
                     rerum neque ducimus?
                 </div>
+            </div>
+
+            <div class="button-row">
+                <button
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    mat-raised-button
+                    class="cancel-button"
+                >
+                    Cancel
+                </button>
             </div>
         </div>
     </div>
