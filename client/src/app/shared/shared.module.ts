@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [],
@@ -23,6 +25,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         MatIconModule,
         MatMenuModule,
         MatProgressBarModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSelectModule,
     ],
     exports: [
         RouterModule,
@@ -34,6 +39,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         MatIconModule,
         MatMenuModule,
         MatProgressBarModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSelectModule,
     ],
 })
 export class SharedModule {}

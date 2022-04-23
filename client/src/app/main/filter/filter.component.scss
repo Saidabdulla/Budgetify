@@ -144,3 +144,78 @@
 
 
 }
+
+.modal {
+    &__dialog {
+        width: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        padding: 0;
+        margin: 0;
+
+        &__content {
+            border: none !important;
+            border-radius: 0 !important;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            padding: 40px 35px;
+            position: relative;
+
+            &__header {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 35px;
+
+                .__title {
+                    font-size: 32px;
+                }
+
+                button {
+                    transform: scale(1.4);
+                    background: none;
+                    border: none;
+                }
+            }
+
+            .form-row {
+                width: 100%;
+            }
+
+            .button-row {
+                position: absolute;
+                bottom: 35px;
+                right: 40px;
+
+
+                .cancel-button {
+                    border: none;
+                    box-shadow: none;
+                    font-size: 20px;
+                    padding: 15px 25px;
+                    border-radius: 10px;
+                    color: var.$login-button-border;
+                }
+
+                .submit-button {
+                    border: none;
+                    box-shadow: none;
+                    font-size: 20px;
+                    background-color: #B9E2E6;
+                    padding: 15px 25px;
+                    margin-left: 10px;
+                    border-radius: 10px;
+                }
+
+                .submit-button-active {
+                    color: black;
+                }
+            }
+
+
+        }
+    }
+
+}

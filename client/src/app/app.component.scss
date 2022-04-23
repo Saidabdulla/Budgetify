@@ -1,7 +1,14 @@
+@use "src/variables"as var;
 @import url('https://fonts.googleapis.com/css2?family=Alata&family=Space+Grotesk&display=swap');
+
+
 
 * {
     margin: 0;
     padding: 0;
     font-family: 'Space Grotesk', sans-serif;
+}
+
+section {
+    background: var.$app-background;
 }

@@ -6,7 +6,7 @@
         </div>
         <div class="main__accounts__card__balance">{{ item.balance }}</div>
         <div class="main__accounts__card__currency">
-            <span *ngIf="item.currency === 'usd'">$</span>
+            {{ item.currency_id?.symbol }}
         </div>
         <button
             class="main__accounts__card__details"
