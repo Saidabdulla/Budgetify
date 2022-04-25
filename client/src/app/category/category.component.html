@@ -9,8 +9,26 @@
             </form>
         </div>
 
-        <div class="category__categories" *ngFor="let category of categories">
-            <button>{{ category.name }}</button>
+        <div class="categories">
+            <button
+                class="category-see-button"
+                *ngFor="let category of categories"
+                ngClass="{{
+                    category.isIncome
+                        ? 'category-income-button'
+                        : 'category-expense-button'
+                }}"
+            >
+                {{ category.name | titlecase }}
+                <mat-icon
+                    data-bs-toggle="modal"
+                    data-bs-target="#updateCategoryModal"
+                    class="mat-icon-left"
+                    (click)="onCategoryClicked(category)"
+                    >edit</mat-icon
+                >
+                <mat-icon (click)="onDeleteCategory(category)">delete</mat-icon>
+            </button>
         </div>
     </div>
 
@@ -31,176 +49,228 @@
                 <mat-icon class="transaction_bg">add</mat-icon> Add Category
             </button>
         </div>
+    </div>
+</div>
 
-        <!-- Modal -->
-        <div
-            class="modal fade"
-            id="categoryModal"
-            tabindex="-1"
-            aria-hidden="true"
-        >
-            <div class="modal-dialog modal__dialog">
-                <div class="modal-content modal__dialog__content">
-                    <div class="modal__dialog__content__header">
-                        <div class="__title">Add Category</div>
-                        <button
-                            type="button"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                        >
-                            <mat-icon>close</mat-icon>
-                        </button>
-                    </div>
+<!-- Modal -->
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal__dialog">
+        <div class="modal-content modal__dialog__content">
+            <div class="modal__dialog__content__header">
+                <div class="__title">Add Category</div>
+                <button
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
 
-                    <div class="error-message" *ngIf="errorMessage.length > 0">
-                        {{ errorMessage }}
-                    </div>
+            <div class="error-message" *ngIf="errorMessage.length > 0">
+                {{ errorMessage }}
+            </div>
 
-                    <ul
-                        class="nav nav-pills mb-3"
-                        id="pills-tab"
-                        role="tablist"
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button
+                        type="button"
+                        id="pills-home-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#pills-home"
+                        role="tab"
+                        aria-controls="pills-home"
+                        aria-selected="true"
+                        class="main__filters__top__expense active"
                     >
-                        <li class="nav-item" role="presentation">
+                        <mat-icon class="expense_bg">arrow_upward</mat-icon>
+                        Expense
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button
+                        type="button"
+                        class="main__filters__top__income"
+                        id="pills-profile-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#pills-profile"
+                        role="tab"
+                        aria-controls="pills-profile"
+                        aria-selected="false"
+                    >
+                        <mat-icon class="income_bg">arrow_downward</mat-icon>
+
+                        Income
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div
+                    class="tab-pane fade show active"
+                    id="pills-home"
+                    role="tabpanel"
+                    aria-labelledby="pills-home-tab"
+                >
+                    <form
+                        [formGroup]="addExpenseCategoryForm"
+                        (ngSubmit)="addExpenseCategory()"
+                        class="auth-form__form"
+                    >
+                        <mat-form-field class="form-row" appearance="outline">
+                            <mat-label>Title</mat-label>
+                            <input
+                                type="text"
+                                matInput
+                                placeholder="Expense ..."
+                                formControlName="name"
+                                maxlength="128"
+                            />
+                        </mat-form-field>
+
+                        <div class="button-row">
                             <button
                                 type="button"
-                                id="pills-home-tab"
-                                data-bs-toggle="pill"
-                                data-bs-target="#pills-home"
-                                role="tab"
-                                aria-controls="pills-home"
-                                aria-selected="true"
-                                class="main__filters__top__expense active"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                                mat-raised-button
+                                class="cancel-button"
                             >
-                                <mat-icon class="expense_bg"
-                                    >arrow_upward</mat-icon
-                                >
-                                Expense
+                                Cancel
                             </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
+
+                            <button
+                                class="submit-button"
+                                type="submit"
+                                color="primary"
+                                [disabled]="addExpenseCategoryForm.invalid"
+                                ngClass="{ 'submit-button-active': !addExpenseCategoryForm.invalid }"
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div
+                    class="tab-pane fade"
+                    id="pills-profile"
+                    role="tabpanel"
+                    aria-labelledby="pills-profile-tab"
+                >
+                    <form
+                        [formGroup]="addIncomeCategoryForm"
+                        (ngSubmit)="addIncomeCategory()"
+                        class="auth-form__form"
+                    >
+                        <mat-form-field class="form-row" appearance="outline">
+                            <mat-label>Title</mat-label>
+                            <input
+                                type="text"
+                                matInput
+                                placeholder="Expense ..."
+                                formControlName="name"
+                                maxlength="128"
+                            />
+                        </mat-form-field>
+
+                        <div class="button-row">
                             <button
                                 type="button"
-                                class="main__filters__top__income"
-                                id="pills-profile-tab"
-                                data-bs-toggle="pill"
-                                data-bs-target="#pills-profile"
-                                role="tab"
-                                aria-controls="pills-profile"
-                                aria-selected="false"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                                mat-raised-button
+                                class="cancel-button"
                             >
-                                <mat-icon class="income_bg"
-                                    >arrow_downward</mat-icon
-                                >
-
-                                Income
+                                Cancel
                             </button>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="pills-tabContent">
-                        <div
-                            class="tab-pane fade show active"
-                            id="pills-home"
-                            role="tabpanel"
-                            aria-labelledby="pills-home-tab"
-                        >
-                            <form
-                                [formGroup]="addExpenseCategoryForm"
-                                (ngSubmit)="addExpenseCategory()"
-                                class="auth-form__form"
+
+                            <button
+                                class="submit-button"
+                                type="submit"
+                                color="primary"
+                                [disabled]="addIncomeCategoryForm.invalid"
+                                ngClass="{ 'submit-button-active': !addIncomeCategoryForm.invalid }"
                             >
-                                <mat-form-field
-                                    class="form-row"
-                                    appearance="outline"
-                                >
-                                    <mat-label>Title</mat-label>
-                                    <input
-                                        type="text"
-                                        matInput
-                                        placeholder="Expense ..."
-                                        formControlName="name"
-                                        maxlength="128"
-                                    />
-                                </mat-form-field>
-
-                                <div class="button-row">
-                                    <button
-                                        type="button"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                        mat-raised-button
-                                        class="cancel-button"
-                                    >
-                                        Cancel
-                                    </button>
-
-                                    <button
-                                        class="submit-button"
-                                        type="submit"
-                                        color="primary"
-                                        [disabled]="
-                                            addExpenseCategoryForm.invalid
-                                        "
-                                        ngClass="{ 'submit-button-active': !addExpenseCategoryForm.invalid }"
-                                    >
-                                        Save
-                                    </button>
-                                </div>
-                            </form>
+                                Save
+                            </button>
                         </div>
-                        <div
-                            class="tab-pane fade"
-                            id="pills-profile"
-                            role="tabpanel"
-                            aria-labelledby="pills-profile-tab"
-                        >
-                            <form
-                                [formGroup]="addIncomeCategoryForm"
-                                (ngSubmit)="addIncomeCategory()"
-                                class="auth-form__form"
-                            >
-                                <mat-form-field
-                                    class="form-row"
-                                    appearance="outline"
-                                >
-                                    <mat-label>Title</mat-label>
-                                    <input
-                                        type="text"
-                                        matInput
-                                        placeholder="Expense ..."
-                                        formControlName="name"
-                                        maxlength="128"
-                                    />
-                                </mat-form-field>
-
-                                <div class="button-row">
-                                    <button
-                                        type="button"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                        mat-raised-button
-                                        class="cancel-button"
-                                    >
-                                        Cancel
-                                    </button>
-
-                                    <button
-                                        class="submit-button"
-                                        type="submit"
-                                        color="primary"
-                                        [disabled]="
-                                            addIncomeCategoryForm.invalid
-                                        "
-                                        ngClass="{ 'submit-button-active': !addIncomeCategoryForm.invalid }"
-                                    >
-                                        Save
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- update modal -->
+<div
+    class="modal fade"
+    id="updateCategoryModal"
+    tabindex="-1"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal__dialog">
+        <div class="modal-content modal__dialog__content">
+            <div class="modal__dialog__content__header">
+                <div class="__title">Update Category</div>
+                <button
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+
+            <div class="error-message" *ngIf="errorMessage.length > 0">
+                {{ errorMessage }}
+            </div>
+
+            <form
+                [formGroup]="updateCategoryForm"
+                (ngSubmit)="updateCategory(category)"
+                class="auth-form__form"
+            >
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input
+                        type="text"
+                        matInput
+                        placeholder="Expense ..."
+                        formControlName="name"
+                        maxlength="128"
+                    />
+                </mat-form-field>
+
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Type</mat-label>
+                    <mat-select formControlName="type">
+                        <mat-option>---</mat-option>
+                        <mat-option value="false"> Expense </mat-option>
+                        <mat-option value="true"> Income </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div class="button-row">
+                    <button
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        mat-raised-button
+                        class="cancel-button"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        class="submit-button"
+                        type="submit"
+                        color="primary"
+                        [disabled]="updateCategoryForm.invalid"
+                        ngClass="{ 'submit-button-active': !updateCategoryForm.invalid }"
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

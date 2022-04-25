@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class CategoryComponent implements OnInit {
     errorMessage = '';
+    category: any;
     categories: any;
 
     constructor(private http: HttpClient, private router: Router) {}
@@ -20,6 +21,11 @@ export class CategoryComponent implements OnInit {
 
     addIncomeCategoryForm: FormGroup = new FormGroup({
         name: new FormControl('', [Validators.required]),
+    });
+
+    updateCategoryForm: FormGroup = new FormGroup({
+        name: new FormControl('', [Validators.required]),
+        type: new FormControl('', [Validators.required]),
     });
 
     addExpenseCategory() {
@@ -52,6 +58,43 @@ export class CategoryComponent implements OnInit {
                     this.errorMessage = error.error;
                 }
             );
+    }
+
+    onCategoryClicked(category: object) {
+        this.category = category;
+    }
+
+    updateCategory(category: object) {
+        this.http
+            .put(`http://localhost:3000/category/${this.category._id}`, {
+                name: this.updateCategoryForm.value.name,
+                isIncome: this.updateCategoryForm.value.type,
+            })
+            .subscribe(
+                (data) => {
+                    window.location.reload();
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+    }
+
+    onDeleteCategory(category: any): void {
+        if (confirm('Are you sure you want to delete this category?')) {
+            this.http
+                .delete(`http://localhost:3000/category/${category._id}`)
+                .subscribe(
+                    (data) => {
+                        window.location.reload();
+                    },
+                    (error) => {
+                        console.log(error);
+                    }
+                );
+        } else {
+            return;
+        }
     }
 
     ngOnInit(): void {
