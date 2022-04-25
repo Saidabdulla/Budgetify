@@ -12,6 +12,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
     declarations: [],
@@ -30,6 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         ReactiveFormsModule,
         MatSelectModule,
         MatDialogModule,
+        MatTabsModule,
     ],
     exports: [
         RouterModule,
@@ -45,6 +47,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         ReactiveFormsModule,
         MatSelectModule,
         MatDialogModule,
+        MatTabsModule,
     ],
 })
 export class SharedModule {}

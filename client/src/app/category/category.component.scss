@@ -1,0 +1,355 @@
+@use "src/variables"as var;
+
+
+.category {
+    display: flex;
+    padding: 0 40px;
+    max-width: 1920px;
+    margin: 0 auto 50px auto;
+    justify-content: space-between;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+
+.main {
+    &__transactions {
+        &__search {
+
+            border-radius: 10px;
+
+            div {
+                display: flex;
+                position: relative;
+                width: 620px;
+                border-radius: 10px;
+                height: 45px;
+                color: var.$login-button-color !important;
+
+                input {
+                    position: absolute;
+                    width: calc(100% - 90px);
+                    background: #fff;
+                    height: 45px;
+                    border-radius: 10px;
+                    border: none;
+                    padding-left: 50px;
+                    padding-right: 40px;
+                    font-size: 18px;
+                    transition: 0.25s ease;
+                }
+
+                input:focus {
+                    outline-width: 1px;
+                    outline-style: solid;
+                    outline-color: var.$login-button-border;
+                }
+
+                button {
+                    position: absolute;
+                    left: 11px;
+                    top: 11px;
+                    border: none;
+                    background: none;
+                    z-index: 99;
+
+                    mat-icon {
+                        transform: scale(1.2);
+                        color: var.$login-button-color !important;
+                    }
+                }
+
+            }
+
+        }
+    }
+
+}
+
+@media(max-width: 1439px) {
+    .main {
+        padding: 0 20px 0 20px;
+    }
+}
+
+
+.main__filters__top {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: auto;
+
+    button {
+        cursor: pointer;
+        width: 235px;
+        height: 50px;
+        background: none;
+        background-color: #fff;
+        border: none;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: var.$login-button-color;
+        font-family: 'Space Grotesk', sans-serif !important;
+
+
+        mat-icon {
+            color: white;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 7px;
+            margin-left: 10px;
+        }
+
+        .income_bg {
+            background-color: var.$income-bg;
+        }
+
+        .expense_bg {
+            background-color: var.$expense-bg;
+        }
+
+        .transaction_bg {
+            background-color: #fff;
+            color: #86C9CF;
+        }
+
+    }
+
+    &__transaction,
+    &__account {
+        background-color: #86C9CF !important;
+
+    }
+}
+
+.main__filters__bottom {
+    display: flex;
+    flex-direction: column;
+
+    button {
+        cursor: pointer;
+        width: 235px;
+        background: none;
+        border: none;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 20px;
+        margin-bottom: 15px;
+        font-family: 'Space Grotesk', sans-serif;
+        color: var.$login-button-color;
+
+        img {
+            border-radius: 50%;
+            height: 35px;
+            width: 35px;
+            background: #fff;
+            margin-left: 5px;
+            margin-right: 10px;
+        }
+    }
+
+    &__add-piggy {
+        height: 50px;
+        background-color: #B9E2E6 !important;
+    }
+
+
+    &__piggybank {
+        height: 64px;
+        background-color: #FECEE2 !important;
+
+        div {
+            width: calc(100% - 89px);
+            text-align: left;
+            margin-right: auto;
+
+            .__text {
+                width: 100%;
+            }
+
+            .__balance {
+                width: 100%;
+                font-size: 13px;
+                text-align: left;
+                margin-bottom: 3px;
+                margin-top: 3px;
+            }
+
+            mat-progress-bar {
+                margin-bottom: 2px;
+            }
+
+            ::ng-deep .mat-progress-bar-fill::after {
+                background-color: #FF76AE;
+            }
+
+            ::ng-deep .mat-progress-bar-buffer {
+                background: #E4E8EB;
+            }
+
+            ::ng-deep .mat-progress-bar {
+                border-radius: 2px;
+            }
+        }
+
+        mat-icon {
+            width: 35px;
+            height: 35px;
+            background-color: white;
+            border-radius: 50%;
+            color: #FF76AE;
+            margin-right: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+
+}
+
+.modal {
+    &__dialog {
+        width: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        padding: 0;
+        margin: 0;
+
+        &__content {
+            border: none !important;
+            border-radius: 0 !important;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            padding: 40px 35px;
+            position: relative;
+
+            &__header {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 35px;
+
+                .__title {
+                    font-size: 32px;
+                }
+
+                button {
+                    transform: scale(1.4);
+                    background: none;
+                    border: none;
+                }
+            }
+
+            .form-row {
+                width: 100%;
+            }
+
+            .button-row {
+                position: absolute;
+                bottom: 15px;
+                right: 40px;
+
+
+                .cancel-button {
+                    border: none;
+                    box-shadow: none;
+                    font-size: 20px;
+                    padding: 15px 25px;
+                    border-radius: 10px;
+                    color: var.$login-button-border;
+                }
+
+                .submit-button {
+                    border: none;
+                    box-shadow: none;
+                    font-size: 20px;
+                    background-color: #B9E2E6;
+                    padding: 15px 25px;
+                    margin-left: 10px;
+                    border-radius: 10px;
+                }
+
+                .submit-button-active {
+                    color: black;
+                }
+            }
+
+
+        }
+    }
+
+}
+
+
+.error-message {
+    border: 1px solid #F5C2C7;
+    background-color: #F8D7DA;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 12px;
+    text-align: center;
+    color: #842029;
+}
+
+#pills-tab {
+    .active {
+        color: rgba($color: var.$login-button-color, $alpha: 1) !important;
+        border: 1px solid rgba($color: var.$login-button-color, $alpha: 1) !important;
+    }
+
+    button {
+        margin-right: 5px;
+        padding: 8px;
+        cursor: pointer;
+        background: none;
+        color: rgba($color: var.$login-button-color, $alpha: 0.5);
+        border: 1px solid rgba($color: var.$login-button-color, $alpha: 0.5);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 20px;
+        margin-bottom: 15px;
+        font-family: 'Space Grotesk', sans-serif !important;
+
+
+        mat-icon {
+            color: white;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 7px;
+        }
+
+
+
+        .income_bg {
+            background-color: var.$income-bg;
+        }
+
+        .expense_bg {
+            background-color: var.$expense-bg;
+        }
+
+        .transaction_bg {
+            background-color: #fff;
+            color: #86C9CF;
+        }
+
+    }
+}
