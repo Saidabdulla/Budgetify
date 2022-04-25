@@ -1,5 +1,5 @@
 <div class="main__accounts" *ngFor="let item of accounts">
-    <div class="main__accounts__card">
+    <div class="main__accounts__card" (click)="clickToActiveAccount(item)">
         <div class="white-layout" *ngIf="item.isActive"></div>
         <div class="main__accounts__card__title">
             {{ item.name | titlecase }}

@@ -5,12 +5,17 @@
     <button type="button" class="main__filters__top__expense">
         <mat-icon class="expense_bg">arrow_downward</mat-icon> Expense
     </button>
-    <button type="button" class="main__filters__top__transaction">
+    <button
+        data-bs-toggle="modal"
+        data-bs-target="#addTransactionModal"
+        type="button"
+        class="main__filters__top__transaction"
+    >
         <mat-icon class="transaction_bg">add</mat-icon> Add Transaction
     </button>
     <button
         data-bs-toggle="modal"
-        data-bs-target="#transactionModal"
+        data-bs-target="#addAccountModal"
         type="button"
         class="main__filters__top__account"
     >
@@ -45,7 +50,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="transactionModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="addAccountModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal__dialog">
         <div class="modal-content modal__dialog__content">
             <div class="modal__dialog__content__header">
@@ -131,6 +136,115 @@
                         color="primary"
                         [disabled]="addAccountForm.invalid"
                         ngClass="{ 'submit-button-active': !addAccountForm.invalid }"
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div
+    class="modal fade"
+    id="addTransactionModal"
+    tabindex="-1"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal__dialog">
+        <div class="modal-content modal__dialog__content">
+            <div class="modal__dialog__content__header">
+                <div class="__title">Add Transaction</div>
+                <button
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+
+            <div class="error-message" *ngIf="errorMessage.length > 0">
+                {{ errorMessage }}
+            </div>
+
+            <form
+                [formGroup]="addTransactionForm"
+                (ngSubmit)="addTransactionMethod()"
+                class="auth-form__form"
+            >
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Amount</mat-label>
+                    <input
+                        type="number"
+                        matInput
+                        placeholder="5000"
+                        formControlName="amount"
+                        maxlength="128"
+                    />
+                </mat-form-field>
+
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Type</mat-label>
+                    <mat-select formControlName="isIncome">
+                        <mat-option>---</mat-option>
+                        <mat-option value="false"> Expense </mat-option>
+                        <mat-option value="true"> Income </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="category_id" required>
+                        <mat-option>---</mat-option>
+                        <mat-option
+                            *ngFor="let category of categories"
+                            [value]="category._id"
+                        >
+                            {{ category.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <input
+                        type="text"
+                        matInput
+                        placeholder="For mobile phone..."
+                        formControlName="description"
+                    />
+                </mat-form-field>
+
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Note</mat-label>
+                    <input
+                        type="text"
+                        matInput
+                        placeholder="Who used this?"
+                        formControlName="note"
+                        maxlength="256"
+                    />
+                </mat-form-field>
+
+                <div class="button-row">
+                    <button
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        mat-raised-button
+                        class="cancel-button"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        class="submit-button"
+                        type="submit"
+                        color="primary"
+                        [disabled]="addTransactionForm.invalid"
+                        ngClass="{ 'submit-button-active': !addTransactionForm.invalid }"
                     >
                         Save
                     </button>

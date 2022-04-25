@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-transaction',
@@ -6,7 +9,49 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./transaction.component.scss'],
 })
 export class TransactionComponent implements OnInit {
-    constructor() {}
+    @Input() activeAccount: any;
+    transactions: any;
+    categories: any;
 
-    ngOnInit(): void {}
+    constructor(private http: HttpClient, private router: Router) {}
+
+    ngOnInit(): void {
+        this.http.get('http://localhost:3000/category').subscribe(
+            (data) => {
+                this.categories = data;
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+
+        setInterval(() => {
+            this.http
+                .get(
+                    `http://localhost:3000/transaction/account/${this.activeAccount._id}`
+                )
+                .subscribe(
+                    (data) => {
+                        this.transactions = data;
+                    },
+                    (error) => {
+                        console.log(error);
+                    }
+                );
+        }, 100);
+    }
 }
+
+// {
+//     account_id: {_id: '626423c937fc75a67caa2040', name: 'credit card', balance: 100000, description: 'Simple Card', currency_id: '6263b0179bc15e4cc8188416', …}
+// amount: 5555
+// category_id: {_id: '62370edefe38570e8557c1da', name: 'Education', isIncome: false, user_id: '62360bcf9878fbec8fcde11a'}
+// createdAt: "2022-04-25T11:09:54.788Z"
+// description: "asdasdas"
+// isIncome: false
+// note: "12312"
+// updatedAt: "2022-04-25T11:09:54.788Z"
+// user_id: "62360bcf9878fbec8fcde11a"
+// __v: 0
+// _id: "6266818282857a5615633392"
+// }

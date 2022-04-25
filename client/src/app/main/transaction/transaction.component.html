@@ -1,161 +1,32 @@
 <div class="main__transactions__cards">
-    <div class="main__transactions__cards__card">
+    <div
+        class="main__transactions__cards__card"
+        *ngFor="let tt of transactions"
+    >
         <div class="main__transactions__cards__card__category cate_bg_primary">
-            Salary
+            {{ tt.category_id?.name }}
         </div>
         <div class="main__transactions__cards__card__content">
-            <div class="_top">Home</div>
+            <div class="_top">{{ tt.description }}</div>
             <div class="_bottom">
-                <mat-icon class="expense_bg">arrow_downward</mat-icon>
-                <div class="__type">Income</div>
+                <mat-icon class="income_bg" *ngIf="tt.isIncome"
+                    >arrow_downward</mat-icon
+                >
+                <mat-icon *ngIf="!tt.isIncome" class="expense_bg"
+                    >arrow_upward</mat-icon
+                >
+                <div class="__type" *ngIf="tt.isIncome">Income</div>
+                <div class="__type" *ngIf="!tt.isIncome">Expense</div>
                 &nbsp; · &nbsp;
-                <div class="__date">24.01.2022</div>
+                <div class="__date">
+                    {{ tt.createdAt | date: 'mediumDate' }}
+                </div>
                 &nbsp; · &nbsp;
-                <div class="__note">John Smith</div>
+                <div class="__note">{{ tt.note }}</div>
             </div>
         </div>
         <div class="main__transactions__cards__card__amount expense_color">
-            $10000
-        </div>
-    </div>
-
-    <div class="main__transactions__cards__card">
-        <div class="main__transactions__cards__card__category cate_bg_primary">
-            Salary
-        </div>
-        <div class="main__transactions__cards__card__content">
-            <div class="_top">Salary</div>
-            <div class="_bottom">
-                <mat-icon class="income_bg">arrow_upward</mat-icon>
-                <div class="__type">Income</div>
-                &nbsp; · &nbsp;
-                <div class="__date">24.01.2022</div>
-                &nbsp; · &nbsp;
-                <div class="__note">John Smith</div>
-            </div>
-        </div>
-        <div class="main__transactions__cards__card__amount income_color">
-            $10000
-        </div>
-    </div>
-
-    <div class="main__transactions__cards__card">
-        <div class="main__transactions__cards__card__category cate_bg_primary">
-            Salary
-        </div>
-        <div class="main__transactions__cards__card__content">
-            <div class="_top">Salary</div>
-            <div class="_bottom">
-                <mat-icon class="income_bg">arrow_upward</mat-icon>
-                <div class="__type">Income</div>
-                &nbsp; · &nbsp;
-                <div class="__date">24.01.2022</div>
-                &nbsp; · &nbsp;
-                <div class="__note">John Smith</div>
-            </div>
-        </div>
-        <div class="main__transactions__cards__card__amount income_color">
-            $10000
-        </div>
-    </div>
-
-    <div class="main__transactions__cards__card">
-        <div class="main__transactions__cards__card__category cate_bg_primary">
-            Salary
-        </div>
-        <div class="main__transactions__cards__card__content">
-            <div class="_top">Salary</div>
-            <div class="_bottom">
-                <mat-icon class="income_bg">arrow_upward</mat-icon>
-                <div class="__type">Income</div>
-                &nbsp; · &nbsp;
-                <div class="__date">24.01.2022</div>
-                &nbsp; · &nbsp;
-                <div class="__note">John Smith</div>
-            </div>
-        </div>
-        <div class="main__transactions__cards__card__amount income_color">
-            $10000
-        </div>
-    </div>
-
-    <div class="main__transactions__cards__card">
-        <div class="main__transactions__cards__card__category cate_bg_primary">
-            Salary
-        </div>
-        <div class="main__transactions__cards__card__content">
-            <div class="_top">Salary</div>
-            <div class="_bottom">
-                <mat-icon class="income_bg">arrow_upward</mat-icon>
-                <div class="__type">Income</div>
-                &nbsp; · &nbsp;
-                <div class="__date">24.01.2022</div>
-                &nbsp; · &nbsp;
-                <div class="__note">John Smith</div>
-            </div>
-        </div>
-        <div class="main__transactions__cards__card__amount income_color">
-            $10000
-        </div>
-    </div>
-
-    <div class="main__transactions__cards__card">
-        <div class="main__transactions__cards__card__category cate_bg_primary">
-            Salary
-        </div>
-        <div class="main__transactions__cards__card__content">
-            <div class="_top">Salary</div>
-            <div class="_bottom">
-                <mat-icon class="income_bg">arrow_upward</mat-icon>
-                <div class="__type">Income</div>
-                &nbsp; · &nbsp;
-                <div class="__date">24.01.2022</div>
-                &nbsp; · &nbsp;
-                <div class="__note">John Smith</div>
-            </div>
-        </div>
-        <div class="main__transactions__cards__card__amount income_color">
-            $10000
-        </div>
-    </div>
-
-    <div class="main__transactions__cards__card">
-        <div class="main__transactions__cards__card__category cate_bg_primary">
-            Salary
-        </div>
-        <div class="main__transactions__cards__card__content">
-            <div class="_top">Salary</div>
-            <div class="_bottom">
-                <mat-icon class="income_bg">arrow_upward</mat-icon>
-                <div class="__type">Income</div>
-                &nbsp; · &nbsp;
-                <div class="__date">24.01.2022</div>
-                &nbsp; · &nbsp;
-                <div class="__note">John Smith</div>
-            </div>
-        </div>
-        <div class="main__transactions__cards__card__amount income_color">
-            $10000
-        </div>
-    </div>
-
-    <div class="main__transactions__cards__card">
-        <div class="main__transactions__cards__card__category cate_bg_primary">
-            Salary
-        </div>
-        <div class="main__transactions__cards__card__content">
-            <div class="_top">Salary</div>
-            <div class="_bottom">
-                <mat-icon class="income_bg">arrow_upward</mat-icon>
-                <div class="__type">Income</div>
-                &nbsp; · &nbsp;
-                <div class="__date">24.01.2022</div>
-                &nbsp; · &nbsp;
-                <div class="__note">John Smith</div>
-            </div>
-        </div>
-        <div class="main__transactions__cards__card__amount income_color">
-            $10000
+            {{ tt.amount }} {{ activeAccount.currency_id?.symbol }}
         </div>
     </div>
 </div>

@@ -9,10 +9,11 @@ import { Router } from '@angular/router';
     styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-    @Input() accounts: any;
+    accounts: any;
     clickedAccount: any;
     errorMessage = '';
     currencies: any;
+    @Output() accountChanged: EventEmitter<any> = new EventEmitter();
 
     constructor(private http: HttpClient, private router: Router) {}
 
@@ -76,7 +77,21 @@ export class AccountComponent implements OnInit {
         }
     }
 
+    clickToActiveAccount(acc: object) {
+        this.accountChanged.emit(acc);
+    }
+
     ngOnInit(): void {
+        this.http.get('http://localhost:3000/main').subscribe(
+            (data) => {
+                this.accounts = data;
+                this.accountChanged.emit(this.accounts[0]);
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+
         this.http.get('http://localhost:3000/currency').subscribe(
             (data) => {
                 this.currencies = data;

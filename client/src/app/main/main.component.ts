@@ -7,18 +7,13 @@ import { HttpClient } from '@angular/common/http';
     styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-    userAccounts: any;
+    activeAccount: any;
 
     constructor(private http: HttpClient) {}
 
-    ngOnInit(): void {
-        this.http.get('http://localhost:3000/main').subscribe(
-            (data) => {
-                this.userAccounts = data;
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
+    countChangedHandler(acc: object) {
+        this.activeAccount = acc;
     }
+
+    ngOnInit(): void {}
 }

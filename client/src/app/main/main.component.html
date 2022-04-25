@@ -1,5 +1,5 @@
 <main class="main">
-    <app-account [accounts]="userAccounts"></app-account>
+    <app-account (accountChanged)="countChangedHandler($event)"></app-account>
     <div class="main__transactions">
         <form class="main__transactions__search" action="#">
             <div>
@@ -14,8 +14,8 @@
             </button>
         </div>
         <div class="main__filters">
-            <app-transaction></app-transaction>
+            <app-transaction [activeAccount]="activeAccount"></app-transaction>
         </div>
     </div>
-    <app-filter></app-filter>
+    <app-filter [activeAccount]="activeAccount"></app-filter>
 </main>
