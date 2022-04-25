@@ -34,7 +34,8 @@ export class FilterComponent implements OnInit {
                     window.location.reload();
                 },
                 (error) => {
-                    console.log(error);
+                    this.errorMessage = error.error;
+                    console.log(this.errorMessage);
                 }
             );
     }

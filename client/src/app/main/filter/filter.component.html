@@ -59,6 +59,10 @@
                 </button>
             </div>
 
+            <div class="error-message" *ngIf="errorMessage.length > 0">
+                {{ errorMessage }}
+            </div>
+
             <form
                 [formGroup]="addAccountForm"
                 (ngSubmit)="onSubmit()"
