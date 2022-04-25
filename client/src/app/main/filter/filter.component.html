@@ -1,8 +1,16 @@
 <div class="main__filters__top">
-    <button type="button" class="main__filters__top__income">
+    <button
+        (click)="incomeClicked()"
+        type="button"
+        class="main__filters__top__income"
+    >
         <mat-icon class="income_bg">arrow_upward</mat-icon> Income
     </button>
-    <button type="button" class="main__filters__top__expense">
+    <button
+        (click)="expenseClicked()"
+        type="button"
+        class="main__filters__top__expense"
+    >
         <mat-icon class="expense_bg">arrow_downward</mat-icon> Expense
     </button>
     <button

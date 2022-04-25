@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -13,6 +13,16 @@ export class FilterComponent implements OnInit {
     @Input() activeAccount: any;
     currencies: any;
     categories: any;
+
+    @Output() filterChanged: EventEmitter<any> = new EventEmitter();
+
+    incomeClicked() {
+        this.filterChanged.emit(true);
+    }
+
+    expenseClicked() {
+        this.filterChanged.emit(false);
+    }
 
     constructor(private http: HttpClient, private router: Router) {}
 

@@ -9,11 +9,104 @@ import { Router } from '@angular/router';
     styleUrls: ['./transaction.component.scss'],
 })
 export class TransactionComponent implements OnInit {
-    @Input() activeAccount: any;
+    activeAccount: any;
+
     transactions: any;
     categories: any;
+    transaction: any;
+
+    @Input() set activeAccountMethod(account: any) {
+        this.getTransactions(account);
+        this.activeAccount = account;
+    }
 
     constructor(private http: HttpClient, private router: Router) {}
+
+    onTransactionClick(transaction: any) {
+        this.transaction = transaction;
+    }
+
+    editTransactionForm = new FormGroup({
+        amount: new FormControl(),
+        isIncome: new FormControl(),
+        description: new FormControl(),
+        note: new FormControl(),
+        category_id: new FormControl(),
+    });
+
+    editTransaction() {
+        const body = {
+            amount: this.editTransactionForm.value.amount,
+            isIncome: this.editTransactionForm.value.isIncome,
+            description: this.editTransactionForm.value.description,
+            note: this.editTransactionForm.value.note,
+            category_id: this.editTransactionForm.value.category_id,
+        };
+
+        if (!body.amount) {
+            delete body.amount;
+        }
+
+        if (!body.isIncome) {
+            delete body.isIncome;
+        }
+
+        if (!body.description) {
+            delete body.description;
+        }
+
+        if (!body.note) {
+            delete body.note;
+        }
+
+        if (!body.category_id) {
+            delete body.category_id;
+        }
+
+        this.http
+            .put(
+                `http://localhost:3000/transaction/${this.transaction._id}`,
+                body
+            )
+            .subscribe(
+                (data) => {
+                    window.location.reload();
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+    }
+
+    deleteTransaction() {
+        if (confirm('Are you sure you want to delete this transaction?')) {
+            this.http
+                .delete(
+                    `http://localhost:3000/transaction/${this.transaction._id}`
+                )
+                .subscribe(
+                    (data) => {
+                        window.location.reload();
+                    },
+                    (error) => {
+                        console.log(error);
+                    }
+                );
+        } else return;
+    }
+
+    getTransactions(acc: any) {
+        this.http
+            .get(`http://localhost:3000/transaction/account/${acc._id}`)
+            .subscribe(
+                (data) => {
+                    this.transactions = data;
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+    }
 
     ngOnInit(): void {
         this.http.get('http://localhost:3000/category').subscribe(
@@ -24,21 +117,6 @@ export class TransactionComponent implements OnInit {
                 console.log(error);
             }
         );
-
-        setInterval(() => {
-            this.http
-                .get(
-                    `http://localhost:3000/transaction/account/${this.activeAccount._id}`
-                )
-                .subscribe(
-                    (data) => {
-                        this.transactions = data;
-                    },
-                    (error) => {
-                        console.log(error);
-                    }
-                );
-        }, 100);
     }
 }
 

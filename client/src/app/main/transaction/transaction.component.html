@@ -25,8 +25,206 @@
                 <div class="__note">{{ tt.note }}</div>
             </div>
         </div>
-        <div class="main__transactions__cards__card__amount expense_color">
-            {{ tt.amount }} {{ activeAccount.currency_id?.symbol }}
+        <div
+            *ngIf="!tt.isIncome"
+            class="main__transactions__cards__card__amount expense_color"
+        >
+            -{{ tt.amount }}
+            {{ activeAccount.currency_id?.symbol }}
+        </div>
+
+        <div
+            *ngIf="tt.isIncome"
+            class="main__transactions__cards__card__amount income_color"
+        >
+            {{ tt.amount }}
+            {{ activeAccount.currency_id?.symbol }}
+        </div>
+
+        <button
+            class="card-details"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#transactionReadModal"
+            (click)="onTransactionClick(tt)"
+        >
+            See details
+        </button>
+    </div>
+</div>
+
+<!-- Read Modal -->
+<div
+    class="modal fade"
+    id="transactionReadModal"
+    tabindex="-1"
+    aria-labelledby="transactionReadModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-lg modal__dialog">
+        <div class="modal-content modal__dialog__content">
+            <div class="modal__dialog__content__header">
+                <div class="__title">Transaction Information</div>
+                <button
+                    data-bs-toggle="modal"
+                    data-bs-target="#updateTransactionModal"
+                    type="button"
+                    class="__edit"
+                >
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                    type="button"
+                    (click)="deleteTransaction()"
+                    class="__delete"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <button
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+
+            <div class="modal__dialog__content__row">
+                <div class="__key">Payment Date:</div>
+                <div class="__value">
+                    {{ transaction?.createdAt | date: 'mediumDate' }}
+                </div>
+            </div>
+
+            <div class="modal__dialog__content__row">
+                <div class="__key">Payee:</div>
+                <div class="__value">
+                    {{ transaction?.note }}
+                </div>
+            </div>
+
+            <div class="modal__dialog__content__row">
+                <div class="__key">Description:</div>
+                <div class="__value">
+                    {{ transaction?.description }}
+                </div>
+            </div>
+
+            <div class="button-row">
+                <button
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    mat-raised-button
+                    class="cancel-button"
+                >
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Modal  -->
+<div
+    class="modal fade"
+    id="updateTransactionModal"
+    tabindex="-1"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal__dialog">
+        <div class="modal-content modal__dialog__content">
+            <div class="modal__dialog__content__header">
+                <div class="__title">Edit Transaction</div>
+                <button
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+
+            <form
+                [formGroup]="editTransactionForm"
+                (ngSubmit)="editTransaction()"
+                class="auth-form__form"
+            >
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Amount</mat-label>
+                    <input
+                        type="number"
+                        matInput
+                        placeholder="5000"
+                        formControlName="amount"
+                        maxlength="128"
+                    />
+                </mat-form-field>
+
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Type</mat-label>
+                    <mat-select formControlName="isIncome">
+                        <mat-option>---</mat-option>
+                        <mat-option value="false"> Expense </mat-option>
+                        <mat-option value="true"> Income </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="category_id">
+                        <mat-option>---</mat-option>
+                        <mat-option
+                            *ngFor="let category of categories"
+                            [value]="category._id"
+                        >
+                            {{ category.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <input
+                        type="text"
+                        matInput
+                        placeholder="For mobile phone..."
+                        formControlName="description"
+                    />
+                </mat-form-field>
+
+                <mat-form-field class="form-row" appearance="outline">
+                    <mat-label>Note</mat-label>
+                    <input
+                        type="text"
+                        matInput
+                        placeholder="Who used this?"
+                        formControlName="note"
+                        maxlength="256"
+                    />
+                </mat-form-field>
+
+                <div class="button-row">
+                    <button
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        mat-raised-button
+                        class="cancel-button"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        class="submit-button"
+                        type="submit"
+                        color="primary"
+                        ngClass="{ 'submit-button-active': !editTransactionForm.invalid }"
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -14,7 +14,9 @@
             </button>
         </div>
         <div class="main__filters">
-            <app-transaction [activeAccount]="activeAccount"></app-transaction>
+            <app-transaction
+                [activeAccountMethod]="activeAccount"
+            ></app-transaction>
         </div>
     </div>
     <app-filter [activeAccount]="activeAccount"></app-filter>
